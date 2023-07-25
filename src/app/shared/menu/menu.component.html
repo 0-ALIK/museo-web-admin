@@ -1,0 +1,12 @@
+<p-menubar [model]="items">
+    <ng-template pTemplate="start">
+        <img src="assets/utp-logo.png" class="w-12 mr-2">
+    </ng-template>
+
+    <ng-template pTemplate="end">
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" [(ngModel)]="termino" pInputText placeholder="Search" class="w-full" (input)="onInputChange()" (keyup.enter)="onEnterPressed()">
+        </span>
+    </ng-template>
+</p-menubar>

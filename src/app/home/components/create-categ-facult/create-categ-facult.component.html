@@ -1,0 +1,5 @@
+<div class="flex gap-2 flex-col">
+    <h2 class="text-lg font-bold">Crear {{ tipo }}</h2>
+    <input type="text" pInputText [(ngModel)]="value" [placeholder]="'Nombre de ' + tipo">
+    <p-button #boton (onClick)="onClickAgregar()" [disabled]="deshabilitado()" [label]="'Agreagar ' + tipo" styleClass="p-button-primary"></p-button>
+</div>

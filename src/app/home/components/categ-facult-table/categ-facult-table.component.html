@@ -1,0 +1,37 @@
+<p-toast [style]="{ width: '300px' }"></p-toast>
+<p-card [header]="tipo | titlecase">
+
+    <p-table [value]="datos" [scrollable]="true" [responsive]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-start items-center sm:flex-row flex-col gap-2">
+                <div class="flex items-center">
+                    <p class="text-lg mr-2">Agregar</p>
+                    <p-button (onClick)="onClickAgregar()" icon="pi pi-plus" styleClass="p-button-primary"></p-button>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th class="text-red-500">Eliminar</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-carrera>
+            <tr>
+                <td>{{carrera.nombre}}</td>
+                <td>
+                    <p-button icon="pi pi-trash" #button (onClick)="OnClickEliminar( carrera.id, button )" styleClass="p-button-danger"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                En total hay {{datos.length}} {{tipo}}.
+            </div>
+        </ng-template>
+    </p-table>
+
+</p-card>

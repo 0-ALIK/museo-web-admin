@@ -1,0 +1,42 @@
+<p-toast [style]="{ width: '300px' }"></p-toast>
+<p-card header="Carreras">
+
+    <p-table [value]="carreras" [scrollable]="true" [responsive]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-between items-center sm:flex-row flex-col gap-2">
+                <p-dropdown [options]="facultades" (onChange)="onChangeFacultades()" [(ngModel)]="selectedFacultad" optionLabel="nombre" placeholder="Facultad" [style]="{ maxWidth: '14rem' }"></p-dropdown>
+                <div class="flex items-center">
+                    <p class="text-lg mr-2">Agregar</p>
+                    <p-button (onClick)="onClickAgregar()" icon="pi pi-plus" styleClass="p-button-primary"></p-button>
+                </div>
+            </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Nombre</th>
+                <th>Facultad</th>
+                <th class="text-red-500">Eliminar</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-carrera>
+            <tr>
+                <td>{{carrera.nombre}}</td>
+                <td>{{carrera.facultad}}</td>
+                <td>
+                    <p-button icon="pi pi-trash" #button (onClick)="OnClickEliminar( carrera.id, button )" styleClass="p-button-danger"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                En total hay {{carreras.length}} carreras.
+            </div>
+        </ng-template>
+    </p-table>
+
+</p-card>
+
+

@@ -1,0 +1,19 @@
+<div *ngIf="tipo === 'articulos'">
+    <p>No lo he hecho</p>
+</div>
+
+<div *ngIf="tipo === 'usuarios'">
+    <p>No lo he hecho</p>
+</div>
+
+<div *ngIf="tipo === 'categorias'">
+    <app-categ-facult-table tipo="categoria"></app-categ-facult-table>
+</div>
+
+<div *ngIf="tipo === 'facultades'">
+    <app-categ-facult-table tipo="facultad"></app-categ-facult-table>
+</div>
+
+<div *ngIf="tipo === 'carreras'">
+    <app-carreras-table></app-carreras-table>
+</div>

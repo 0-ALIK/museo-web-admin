@@ -1,0 +1,6 @@
+<div class="flex gap-2 flex-col">
+    <h2 class="text-lg font-bold">Crear carrera</h2>
+    <p-dropdown [options]="facultades" [(ngModel)]="selectedFacultad" optionLabel="nombre" [style]="{ maxWidth: '14rem' }" placeholder="Facultad"></p-dropdown>
+    <input type="text" pInputText [(ngModel)]="value" placeholder="Nombre de carrera">
+    <p-button #boton (onClick)="onClickAgregar()" [disabled]="deshabilitado()" label="Agreagar carrera" styleClass="p-button-primary"></p-button>
+</div>
