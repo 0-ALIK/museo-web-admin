@@ -1,0 +1,8 @@
+<form [formGroup]="form" class="flex flex-col gap-2 ">
+    <input type="text" pInputText placeholder="Nombre" formControlName="nombre">
+    <input type="text" pInputText placeholder="Dueño" formControlName="dueno">
+    <input type="text" pInputText placeholder="Ubicación" formControlName="ubicacion">
+    <input type="text" pInputText placeholder="Nombre" formControlName="nombre">
+    <p-inputNumber inputId="integeronly" placeholder="Año" formControlName="year"></p-inputNumber>
+    <p-dropdown [options]="categorias" optionLabel="nombre" placeholder="Categoria" formControlName="categoria"></p-dropdown>
+</form>

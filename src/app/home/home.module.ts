@@ -11,7 +11,7 @@ import { TableModule } from 'primeng/table';
 import { CarrerasTableComponent } from './components/carreras-table/carreras-table.component';
 import { CategFacultTableComponent } from './components/categ-facult-table/categ-facult-table.component';
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
@@ -22,6 +22,8 @@ import { CreateCategFacultComponent } from './components/create-categ-facult/cre
 import { UsuariosTableComponent } from './components/usuarios-table/usuarios-table.component';
 import { ArticulosTableComponent } from './components/articulos-table/articulos-table.component';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { FormArticulosComponent } from './components/form-articulos/form-articulos.component';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 
@@ -35,7 +37,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
         CreateCarreraComponent,
         CreateCategFacultComponent,
         UsuariosTableComponent,
-        ArticulosTableComponent
+        ArticulosTableComponent,
+        FormArticulosComponent
     ],
     imports: [
         CommonModule,
@@ -51,7 +54,9 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
         MessagesModule,
         DynamicDialogModule,
         InputTextModule,
-        ConfirmPopupModule
+        ConfirmPopupModule,
+        ReactiveFormsModule,
+        InputNumberModule
     ]
 })
 export class HomeModule { }

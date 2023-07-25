@@ -13,11 +13,18 @@ export class ArticulosService {
 
     constructor( private http: HttpClient ) { }
 
-    public getAll( query: string = '' ): Observable<Articulo[]> {
+    public getAll( query: string | undefined, categoria: number | undefined ): Observable<Articulo[]> {
         const url = this.host + '/articulos/all';
 
-        const params: HttpParams = new HttpParams()
-            .set('query', query);
+        let params: HttpParams = new HttpParams();
+
+        if (query) {
+            params = params.append('query', query);
+        }
+
+        if (categoria) {
+            params = params.append('categoria', categoria.toString());
+        }
 
         return this.http.get<Articulo[]>( url, { params } );
     }

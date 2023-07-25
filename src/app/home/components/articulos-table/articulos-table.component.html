@@ -2,6 +2,16 @@
 <p-card header="Articulos">
 
     <p-table [value]="articulos" [scrollable]="true">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-between items-center sm:flex-row flex-col gap-2">
+                <p-dropdown [options]="categorias" (onChange)="onChangeCategoria()" [(ngModel)]="currentCategoria" optionLabel="nombre" placeholder="Categoria" [style]="{ maxWidth: '14rem' }"></p-dropdown>
+                <div class="flex items-center">
+                    <p class="text-lg mr-2">Agregar</p>
+                    <p-button (onClick)="onClickAgregar()" icon="pi pi-plus" styleClass="p-button-primary"></p-button>
+                </div>
+            </div>
+        </ng-template>
+
         <ng-template pTemplate="header">
             <tr>
                 <th>Foto</th>
@@ -40,7 +50,7 @@
 
         <ng-template pTemplate="summary">
             <div class="flex align-items-center justify-content-between">
-                En total hay {{articulos.length}} articulos.
+                En total hay {{articulos.length}} articulos. (Recarga la pagina si te quedaste sin resultados XD)
             </div>
         </ng-template>
     </p-table>
