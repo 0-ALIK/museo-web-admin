@@ -1,1 +1,39 @@
-<p>usuarios-table works!</p>
+<p-toast [style]="{ width: '300px' }"></p-toast>
+<p-card header="Usuarios">
+
+    <p-table [value]="usuarios" [scrollable]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Foto</th>
+                <th>Nombre y apellido</th>
+                <th>Cédula</th>
+                <th>Rol</th>
+                <th>
+                    <p class="text-red-500">Eliminar</p>
+                </th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-usuario>
+            <tr>
+                <td>
+                    <img *ngIf="usuario.foto" [src]="usuario.foto" alt="foto" class="w-12">
+                    <i *ngIf="!usuario.foto" class="pi pi-user" style="font-size: 2.5rem"></i>
+                </td>
+                <td>{{ usuario.nombre }} {{ usuario.apellido }}</td>
+                <td>{{ usuario.cedula }}</td>
+                <td>{{ usuario.rol }}</td>
+                <td>
+                    <p-button *ngIf="usuario.rol !== 'ADMIN'" icon="pi pi-trash" #button (onClick)="OnClickEliminar( usuario.id, button )" styleClass="p-button-danger"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                En total hay {{usuarios.length}} usuarios.
+            </div>
+        </ng-template>
+    </p-table>
+
+</p-card>

@@ -1,0 +1,48 @@
+<p-toast [style]="{ width: '300px' }"></p-toast>
+<p-card header="Articulos">
+
+    <p-table [value]="articulos" [scrollable]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+                <th>Dueño</th>
+                <th>Categoria</th>
+                <th>
+                    <p class="text-red-500">Eliminar</p>
+                </th>
+                <th>
+                    <p class="text-green-500">Editar</p>
+                </th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-articulo>
+            <tr>
+                <td>
+                    <img *ngIf="articulo.fotos[0]" [src]="articulo.fotos[0].url" alt="foto" class="w-12">
+                    <i *ngIf="!articulo.fotos[0]" class="pi pi-camera" style="font-size: 2.5rem"></i>
+                </td>
+                <td>{{ articulo.nombre }}</td>
+                <td>{{ articulo.ubicacion }}</td>
+                <td>{{ articulo.dueno }}</td>
+                <td>{{ articulo.categoria }}</td>
+                <td>
+                    <p-confirmPopup></p-confirmPopup>
+                    <p-button icon="pi pi-trash" #button (onClick)="OnClickEliminarConfirm( $event, articulo.id )" styleClass="p-button-danger"></p-button>
+                </td>
+                <td>
+                    <p-button icon="pi pi-pencil" #button styleClass="p-button-success"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="summary">
+            <div class="flex align-items-center justify-content-between">
+                En total hay {{articulos.length}} articulos.
+            </div>
+        </ng-template>
+    </p-table>
+
+</p-card>

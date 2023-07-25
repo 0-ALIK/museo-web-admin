@@ -55,7 +55,7 @@ export class CategFacultTableComponent implements OnInit, OnDestroy {
 
         const subSearchMenu = this.searchMenuService.realizarBusqueda().subscribe({
             next: termino => {
-                this.buscarCarrerasByName( termino );
+                this.buscarByName( termino );
             }
         });
 
@@ -63,7 +63,7 @@ export class CategFacultTableComponent implements OnInit, OnDestroy {
         this.subs.push( subSearchMenu );
     }
 
-    private buscarCarrerasByName( termino: string ): void {
+    private buscarByName( termino: string ): void {
         let sub = new Subscription();
 
         if( this.tipo === 'categoria' ) {

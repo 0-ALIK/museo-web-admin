@@ -20,6 +20,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CreateCarreraComponent } from './components/create-carrera/create-carrera.component';
 import { CreateCategFacultComponent } from './components/create-categ-facult/create-categ-facult.component';
 import { UsuariosTableComponent } from './components/usuarios-table/usuarios-table.component';
+import { ArticulosTableComponent } from './components/articulos-table/articulos-table.component';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 
 
@@ -32,7 +34,8 @@ import { UsuariosTableComponent } from './components/usuarios-table/usuarios-tab
         CategFacultTableComponent,
         CreateCarreraComponent,
         CreateCategFacultComponent,
-        UsuariosTableComponent
+        UsuariosTableComponent,
+        ArticulosTableComponent
     ],
     imports: [
         CommonModule,
@@ -47,7 +50,8 @@ import { UsuariosTableComponent } from './components/usuarios-table/usuarios-tab
         ToastModule,
         MessagesModule,
         DynamicDialogModule,
-        InputTextModule
+        InputTextModule,
+        ConfirmPopupModule
     ]
 })
 export class HomeModule { }

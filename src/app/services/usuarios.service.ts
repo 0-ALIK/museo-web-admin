@@ -22,7 +22,17 @@ export class UsuariosService {
         return this.http.get<Usuario[]>( url, { params } );
     }
 
-    public deleteUsuario( id: string ): Observable<Usuario> {
+    public putUsuario( usuario: Usuario ): Observable<Usuario> {
+        const url = this.host + '/usuarios';
+        const token = localStorage.getItem('token') || '';
+
+        const headers = new HttpHeaders()
+            .set('x-token', token);
+
+        return this.http.put<Usuario>( url, usuario, { headers } );
+    }
+
+    public deleteUsuario( id: number ): Observable<Usuario> {
         const url = this.host + '/usuarios/' + id;
         const token = localStorage.getItem('token') || '';
 
