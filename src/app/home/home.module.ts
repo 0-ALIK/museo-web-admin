@@ -24,6 +24,9 @@ import { ArticulosTableComponent } from './components/articulos-table/articulos-
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { FormArticulosComponent } from './components/form-articulos/form-articulos.component';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { EditorModule } from 'primeng/editor';
+import { FileUploadModule } from 'primeng/fileupload';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 
@@ -56,7 +59,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
         InputTextModule,
         ConfirmPopupModule,
         ReactiveFormsModule,
-        InputNumberModule
+        InputNumberModule,
+        EditorModule,
+        FileUploadModule,
+        CheckboxModule
     ]
 })
 export class HomeModule { }

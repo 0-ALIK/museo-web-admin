@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -6,4 +6,14 @@ import { MessageService } from 'primeng/api';
     templateUrl: './app.component.html',
     providers: [ MessageService ]
 })
-export class AppComponent { }
+export class AppComponent implements OnInit {
+
+    public ngOnInit(): void {
+        if (!localStorage.getItem('token')) {
+            localStorage.setItem('token', 'No tengo papá :(');
+        }
+    }
+
+
+
+}

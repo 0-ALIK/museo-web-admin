@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { SearchMenuService } from 'src/app/services/search-menu.service';
 
@@ -12,7 +13,8 @@ export class MenuComponent implements OnInit {
 
     public termino: string = "";
 
-    public constructor ( private searchMenuService: SearchMenuService ) {}
+    public constructor ( private searchMenuService: SearchMenuService,
+        private router: Router ) {}
 
     public ngOnInit(): void {
         this.items = [
@@ -60,7 +62,8 @@ export class MenuComponent implements OnInit {
     }
 
     private cerrarSesion(): void {
-        console.log(' Cerrando sesión... ');
+        localStorage.setItem('token', 'no tengo papá :(');
+        this.router.navigate(['/']);
     }
 
 }

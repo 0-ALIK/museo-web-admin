@@ -1,1 +1,14 @@
-<p>login works!</p>
+<p-toast></p-toast>
+<div class="w-screen h-screen flex justify-center items-center p-2">
+
+    <p-card header="Login">
+
+        <div class="flex flex-col gap-2 items-center">
+            <input type="text" pInputText [(ngModel)]="nombre_usuario" [style]="{ width: '100%' }" placeholder="Nombre de usuario">
+            <p-password [(ngModel)]="password" [feedback]="false" placeholder="Contraseña" [style]="{ width: '100%' }"></p-password>
+            <p-button #button label="Ingresar" [loading]="loading" [disabled]="buttonDisabled()" (onClick)="submit( )"></p-button>
+        </div>
+
+    </p-card>
+
+</div>

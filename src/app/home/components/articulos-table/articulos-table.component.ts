@@ -8,6 +8,7 @@ import { ArticulosService } from 'src/app/services/articulos.service';
 import { CategoriasService } from 'src/app/services/categorias.service';
 import { SearchMenuService } from 'src/app/services/search-menu.service';
 import { FormArticulosComponent } from '../form-articulos/form-articulos.component';
+import { Button } from 'primeng/button';
 
 @Component({
     selector: 'app-articulos-table',
@@ -25,6 +26,7 @@ export class ArticulosTableComponent implements OnInit, OnDestroy {
     public currentCategoria: Categoria | undefined;
 
     public formArticulos: DynamicDialogRef | undefined;
+    public formArticulosEdit: DynamicDialogRef | undefined;
 
     public constructor(
         private articulosService: ArticulosService,
@@ -107,6 +109,61 @@ export class ArticulosTableComponent implements OnInit, OnDestroy {
             baseZIndex: 10000,
             maximizable: true
         });
+
+        const sub = this.formArticulos.onClose.subscribe({
+            next: ( data: Articulo ) => {
+                if(!data) return;
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Creado',
+                    detail: data.nombre
+                });
+                this.articulos.push( data );
+            }
+        });
+
+        this.subs.push( sub );
+    }
+
+    public onClickEditar( idEditar: number, button: Button ): void {
+
+        button.loading = true;
+
+        const sub = this.articulosService.getById( idEditar ).subscribe({
+            next: articulo => {
+
+                this.formArticulosEdit = this.dialogService.open( FormArticulosComponent, {
+                    data: {
+                        articuloForEdit: articulo
+                    },
+                    header: 'Editar a '+articulo.nombre,
+                    width: '80%',
+                    height: '80%',
+                    contentStyle: { overflow: 'auto' },
+                    baseZIndex: 10000,
+                    maximizable: true
+                });
+
+                button.loading = false;
+
+                const sub = this.formArticulosEdit.onClose.subscribe({
+                    next: ( data: Articulo ) => {
+                        if(!data) return;
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: 'Editado',
+                            detail: data.nombre
+                        });
+                    }
+                });
+
+                this.subs.push( sub );
+
+            }
+        })
+
+        this.subs.push( sub )
+
     }
 
     public buscarByNameOrCategoria( termino: string | undefined, categoria: number | undefined ) {

@@ -30,11 +30,11 @@ export class ArticulosService {
     }
 
     public getById( id: number ): Observable<Articulo> {
-        const url = this.http + '/articulos/' + id;
+        const url = this.host + '/articulos/' + id;
         return this.http.get<Articulo>( url );
     }
 
-    public postArticulo( articulo: Articulo ): Observable<Articulo> {
+    public postArticulo( articulo: FormData ): Observable<Articulo> {
         const url = this.host + '/articulos';
         const token = localStorage.getItem('token') || '';
 
@@ -44,7 +44,7 @@ export class ArticulosService {
         return this.http.post<Articulo>( url, articulo, { headers } );
     }
 
-    public putArticulo( id: number, articulo: Articulo ): Observable<Articulo> {
+    public putArticulo( id: number, articulo: FormData ): Observable<Articulo> {
         const url = this.host + '/articulos/' + id;
         const token = localStorage.getItem('token') || '';
 

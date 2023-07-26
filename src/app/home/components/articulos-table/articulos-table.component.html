@@ -43,7 +43,7 @@
                     <p-button icon="pi pi-trash" #button (onClick)="OnClickEliminarConfirm( $event, articulo.id )" styleClass="p-button-danger"></p-button>
                 </td>
                 <td>
-                    <p-button icon="pi pi-pencil" #button styleClass="p-button-success"></p-button>
+                    <p-button icon="pi pi-pencil" #button styleClass="p-button-success" (onClick)="onClickEditar( articulo.id, button )"></p-button>
                 </td>
             </tr>
         </ng-template>

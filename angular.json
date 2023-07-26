@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+                "quill"
+            ],
             "outputPath": "dist/museo-web-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -26,6 +29,7 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/quill/dist/quill.snow.css",
               "node_modules/primeng/resources/themes/md-dark-deeppurple/theme.css",
               "node_modules/primeng/resources/primeng.min.css"
             ],

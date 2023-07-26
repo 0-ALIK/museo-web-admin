@@ -10,13 +10,16 @@ import { UsuariosService } from '../services/usuarios.service';
 })
 export class HomeComponent implements OnInit {
 
+    public nombre_usuario: string = '';
 
-    public constructor( private carrerasService: CarrerasService,
-        private usuariosService: UsuariosService ) {}
+    public ngOnInit(): void {
 
-    public ngOnInit(): void { }
+        if( localStorage.getItem('usuario') ) {
 
-    test(): void {
+            this.nombre_usuario = JSON.parse( localStorage.getItem('usuario') || '' ).nombre_usuario;
+
+        }
+
     }
 
 }

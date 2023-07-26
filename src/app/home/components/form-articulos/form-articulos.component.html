@@ -1,8 +1,96 @@
 <form [formGroup]="form" class="flex flex-col gap-2 ">
-    <input type="text" pInputText placeholder="Nombre" formControlName="nombre">
-    <input type="text" pInputText placeholder="Dueño" formControlName="dueno">
-    <input type="text" pInputText placeholder="Ubicación" formControlName="ubicacion">
-    <input type="text" pInputText placeholder="Nombre" formControlName="nombre">
-    <p-inputNumber inputId="integeronly" placeholder="Año" formControlName="year"></p-inputNumber>
-    <p-dropdown [options]="categorias" optionLabel="nombre" placeholder="Categoria" formControlName="categoria"></p-dropdown>
+
+    <div>
+        <h2 class="text-lg">Nombre<span class="text-red-500">*</span></h2>
+        <p class="text-xs text-red-500" *ngIf="error('nombre', 'required')">El nombre es requerido</p>
+        <p class="text-xs text-red-500" *ngIf="error('nombre', 'minlength')">Muy corto</p>
+        <p class="text-xs text-red-500" *ngIf="error('nombre', 'maxlength')">Muy largo</p>
+        <input type="text" [style]="{ width: '100%'}" pInputText placeholder="Nombre" formControlName="nombre">
+    </div>
+
+    <div>
+        <h2 class="text-lg">Dueño<span class="text-red-500">*</span></h2>
+        <p class="text-xs text-red-500" *ngIf="error('dueno', 'required')">El dueño es requerido</p>
+        <p class="text-xs text-red-500" *ngIf="error('dueno', 'minlength')">Muy corto</p>
+        <p class="text-xs text-red-500" *ngIf="error('dueno', 'maxlength')">Muy largo</p>
+        <input type="text" [style]="{ width: '100%'}" pInputText placeholder="Dueño" formControlName="dueno">
+    </div>
+
+    <div>
+        <h2 class="text-lg">Ubicación<span class="text-red-500">*</span></h2>
+        <p class="text-xs text-red-500" *ngIf="error('ubicacion', 'required')">La ubicación es requerida</p>
+        <p class="text-xs text-red-500" *ngIf="error('ubicacion', 'minlength')">Muy corto</p>
+        <p class="text-xs text-red-500" *ngIf="error('ubicacion', 'maxlength')">Muy largo</p>
+        <input type="text" [style]="{ width: '100%'}" pInputText placeholder="Ubicación" formControlName="ubicacion">
+    </div>
+
+    <div>
+        <h2 class="text-lg">Año<span class="text-red-500">*</span></h2>
+        <p class="text-xs text-red-500" *ngIf="error('year', 'required')">El año es requerido</p>
+        <p class="text-xs text-red-500" *ngIf="error('year', 'min')">El año es bajo</p>
+        <p-inputNumber inputId="integeronly" placeholder="Año" formControlName="year"></p-inputNumber>
+    </div>
+
+    <div>
+        <h2 class="text-lg">Categoría<span class="text-red-500">*</span></h2>
+        <p *ngIf="articuloForEdit">Categoria actual: {{ articuloForEdit.categoria}}</p>
+        <p-dropdown [options]="categorias" optionLabel="nombre" placeholder="Categoria" formControlName="categoria"></p-dropdown>
+    </div>
+
+    <div>
+        <h2 class="text-lg">Descripción<span class="text-red-500">*</span></h2>
+        <p class="text-xs text-red-500" *ngIf="error('descripcion', 'required')">La descripción es requerido</p>
+        <p class="text-xs text-red-500" *ngIf="error('descripcion', 'minlength')">Muy corto</p>
+        <p-editor [style]="{ height: '320px' }" formControlName="descripcion">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-bold" aria-label="Bold"></button>
+                    <button type="button" class="ql-italic" aria-label="Italic"></button>
+                    <button type="button" class="ql-underline" aria-label="Underline"></button>
+                </span>
+            </ng-template>
+        </p-editor>
+    </div>
+
+    <div *ngIf="articuloForEdit">
+        <h2 class="text-lg">Archivos multimedia actuales</h2>
+        <p>Selecciona los que deseas eliminar</p>
+        <p>Si no se muestra nada es porque este articulo no tiene XD</p>
+        <section [ngStyle]="{ backgroundColor: 'var(--surface-card)' }" class="p-4 border rounded-sm border-neutral-700 ">
+
+            <div *ngIf="currentMultimedios.length !== 0" class="flex gap-2 flex-wrap">
+
+                <label class="relative w-20 h-20" *ngFor="let multimedio of currentMultimedios; let i = index" [for]="'checkbox_' + i">
+                    <p-checkbox class="absolute left-1 top-1" [name]="'checkbox_' + i" [value]="multimedio.id || multimedio.id_multimedio" [(ngModel)]="articulosBorrarId" [inputId]="'checkbox_' + i" [ngModelOptions]="{standalone: true}"></p-checkbox>
+
+                    <img *ngIf="multimedio.tipo === 'imagen'" class="w-full h-full" [src]="multimedio.url" alt="img">
+
+                    <video *ngIf="multimedio.tipo === 'video'" class="w-full h-full" autoplay [volume]="0" [src]="multimedio.url"></video>
+
+                    <img *ngIf="multimedio.tipo === 'audio'" class="w-full h-16" src="assets/audio-icon.webp" alt="img">
+                    <p *ngIf="multimedio.tipo === 'audio'" class="text-xs text-center">Audio file</p>
+                </label>
+
+            </div>
+
+        </section>
+    </div>
+
+    <div>
+        <h2 class="text-lg">Multimedios</h2>
+        <p>Cando haya seleccionado sus archivos de click en <span class="font-bold">Upload</span> para subirlos <span class="font-bold text-purple-500">temporalmente</span> a la memoria</p>
+        <p>Si un archivo no se sube es porque no tiene una extensión valida {{ extenPerminitas | json }}</p>
+        <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*,audio/*,video/*" [maxFileSize]="5000000">
+            <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                    <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
+                </ul>
+            </ng-template>
+        </p-fileUpload>
+    </div>
+
+    <p-button [label]="label" [disabled]="!form.valid" #button (onClick)="submit( button )" ></p-button>
+
 </form>
+
+
