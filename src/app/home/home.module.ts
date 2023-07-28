@@ -4,7 +4,6 @@ import { ButtonModule } from 'primeng/button';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { VerComponent } from './pages/ver/ver.component';
-import { EditComponent } from './pages/edit/edit.component';
 import { SharedModule } from '../shared/shared.module';
 import { DividerModule } from 'primeng/divider';
 import { TableModule } from 'primeng/table';
@@ -34,7 +33,6 @@ import { CheckboxModule } from 'primeng/checkbox';
     declarations: [
         HomeComponent,
         VerComponent,
-        EditComponent,
         CarrerasTableComponent,
         CategFacultTableComponent,
         CreateCarreraComponent,
