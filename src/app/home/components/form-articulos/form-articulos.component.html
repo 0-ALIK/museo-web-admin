@@ -41,21 +41,12 @@
         <h2 class="text-lg">Descripción<span class="text-red-500">*</span></h2>
         <p class="text-xs text-red-500" *ngIf="error('descripcion', 'required')">La descripción es requerido</p>
         <p class="text-xs text-red-500" *ngIf="error('descripcion', 'minlength')">Muy corto</p>
-        <p-editor [style]="{ height: '320px' }" formControlName="descripcion">
-            <ng-template pTemplate="header">
-                <span class="ql-formats">
-                    <button type="button" class="ql-bold" aria-label="Bold"></button>
-                    <button type="button" class="ql-italic" aria-label="Italic"></button>
-                    <button type="button" class="ql-underline" aria-label="Underline"></button>
-                </span>
-            </ng-template>
-        </p-editor>
+        <textarea rows="10" [style]="{ width: '100%' }" pInputTextarea formControlName="descripcion"></textarea>
     </div>
 
     <div *ngIf="articuloForEdit">
         <h2 class="text-lg">Archivos multimedia actuales</h2>
         <p>Selecciona los que deseas eliminar</p>
-        <p>Si no se muestra nada es porque este articulo no tiene XD</p>
         <section [ngStyle]="{ backgroundColor: 'var(--surface-card)' }" class="p-4 border rounded-sm border-neutral-700 ">
 
             <div *ngIf="currentMultimedios.length !== 0" class="flex gap-2 flex-wrap">
@@ -72,6 +63,8 @@
                 </label>
 
             </div>
+
+            <div *ngIf="currentMultimedios.length === 0" class="p-4 rounded-sm bg-purple-500">No hay archivos multimedia</div>
 
         </section>
     </div>

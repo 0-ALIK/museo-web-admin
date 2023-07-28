@@ -1,7 +1,7 @@
 <p-toast [style]="{ width: '300px' }"></p-toast>
 <p-card header="Carreras">
 
-    <p-table [value]="carreras" [scrollable]="true" [responsive]="true">
+    <p-table [value]="carreras" [scrollable]="true">
         <ng-template pTemplate="caption">
             <div class="flex justify-between items-center sm:flex-row flex-col gap-2">
                 <p-dropdown [options]="facultades" (onChange)="onChangeFacultades()" [(ngModel)]="selectedFacultad" optionLabel="nombre" placeholder="Facultad" [style]="{ maxWidth: '14rem' }"></p-dropdown>
