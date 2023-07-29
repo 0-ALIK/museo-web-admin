@@ -59,7 +59,7 @@
                     <video *ngIf="multimedio.tipo === 'video'" class="w-full h-full" autoplay [volume]="0" [src]="multimedio.url"></video>
 
                     <img *ngIf="multimedio.tipo === 'audio'" class="w-full h-16" src="assets/audio-icon.webp" alt="img">
-                    <p *ngIf="multimedio.tipo === 'audio'" class="text-xs text-center">Audio file</p>
+                    <p *ngIf="multimedio.tipo === 'audio'" class="text-xs text-center">{{ getNombreUrl( multimedio.url) }}</p>
                 </label>
 
             </div>

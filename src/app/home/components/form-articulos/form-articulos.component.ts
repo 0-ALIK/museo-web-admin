@@ -140,6 +140,28 @@ export class FormArticulosComponent implements OnInit, OnDestroy {
         this.ref.close( dato );
     }
 
+    public getNombreUrl( url: string ): string {
+
+        let nombre = '';
+
+        const urlParts = url.split('/');
+        const urlPartsEnd = urlParts[ urlParts.length - 1 ];
+        const fileNameRaw = urlPartsEnd.split('?')[ 0 ];
+
+        if(fileNameRaw.includes('%')) {
+            const fileName = fileNameRaw.split('%')[ fileNameRaw.split('%').length - 1 ];
+            nombre = fileName.slice(3).replace(/^\d+/, '');
+        } else {
+            nombre = fileNameRaw.slice(3).replace(/^\d+/, '');
+        }
+
+        if( nombre.length > 10 ) {
+            nombre =  nombre.substring( nombre.length - 7 ) + '...';
+        }
+
+        return nombre;
+    }
+
     public ngOnDestroy(): void {
         if(this.subs.length !== 0)
             this.subs.forEach( sub => sub.unsubscribe() );
