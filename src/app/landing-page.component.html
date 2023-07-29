@@ -1,13 +1,17 @@
-<div class="w-screen h-screen flex justify-center items-center flex-col">
+<div class="w-screen h-screen flex justify-center items-center flex-col relative">
+
+    <div class="absolute top-2 left-2">
+        <p-button label="🤫" (onClick)="estaSecreto = !estaSecreto" styleClass="p-button-sm"></p-button>
+    </div>
 
     <div>
-        <div class="flex items-center">
-            <img src="../assets/utp-logo.png" alt="utp-logo" class="w-32">
-            <h1 class="text-9xl">Museo utp</h1>
-            <img src="../assets/fisc-logo.png" alt="fisc-logo" class="w-32">
+        <div class="flex items-center justify-center">
+            <img src="../assets/utp-logo.png" alt="utp-logo" class="w-12 sm:w-32">
+            <h1 class="text-4xl sm:text-9xl text-center">Museo utp</h1>
+            <img src="../assets/fisc-logo.png" alt="fisc-logo" class="w-12 sm:w-32">
         </div>
-        <p class="text-center text-6xl">Web administrativa</p>
-        <p class="text-center text-3xl">By: Alik</p>
+        <p class="text-center text-2xl sm:text-6xl">Web administrativa</p>
+        <p *ngIf="!estaSecreto" class="text-center text-2xl sm:text-6xl animate-bounce">Alik no trabajó aquí🤫</p>
     </div>
     <p-button label="Entrar" [routerLink]="['/home']" styleClass="p-button-lg"></p-button>
 

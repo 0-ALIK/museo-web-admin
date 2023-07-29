@@ -73,7 +73,7 @@
         <h2 class="text-lg">Multimedios</h2>
         <p>Cando haya seleccionado sus archivos de click en <span class="font-bold">Upload</span> para subirlos <span class="font-bold text-purple-500">temporalmente</span> a la memoria</p>
         <p>Si un archivo no se sube es porque no tiene una extensión valida {{ extenPerminitas | json }}</p>
-        <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*,audio/*,video/*" [maxFileSize]="5000000">
+        <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*,audio/*,video/*" [maxFileSize]="10000000">
             <ng-template pTemplate="content">
                 <ul *ngIf="uploadedFiles.length">
                     <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>

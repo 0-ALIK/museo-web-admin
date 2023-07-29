@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
     selector: 'app-landing-page',
     templateUrl: './landing-page.component.html',
 })
-export class LandingPageComponent { }
+export class LandingPageComponent {
+
+    public estaSecreto: boolean = true;
+
+}
